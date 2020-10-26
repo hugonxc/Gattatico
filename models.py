@@ -26,3 +26,25 @@ class Floor(Segment):
         # pyxel.blt(x, y, IMG, IMG_X, IMG_Y, WIDTH, HEIGHT, BKG)
 
     
+class Pickle(Circle):
+    def draw(self):
+        IMG = 0
+        IMG_X, IMG_Y = 5,5
+        WIDTH, HEIGHT = 6,6
+        BKG = pyxel.COLOR_BLACK
+
+        x, y = self.body.position
+        pyxel.circ(x, y, self.radius, pyxel.COLOR_WHITE)
+        # pyxel.blt(x, y, IMG, IMG_X, IMG_Y, WIDTH, HEIGHT, BKG)
+
+
+class Star(Circle):
+    def draw(self):
+        IMG = 0
+        IMG_X, IMG_Y = 5,5
+        WIDTH, HEIGHT = 6,6
+        BKG = pyxel.COLOR_BLACK
+
+        x, y = self.body.position
+        pyxel.circ(x, y, self.radius, pyxel.COLOR_YELLOW)
+        # pyxel.blt(x, y, IMG, IMG_X, IMG_Y, WIDTH, HEIGHT, BKG)
