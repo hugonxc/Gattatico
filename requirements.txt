@@ -1,0 +1,5 @@
+cffi==1.14.3
+pkg-resources==0.0.0
+pycparser==2.20
+pymunk==5.7.0
+pyxel==1.4.2
