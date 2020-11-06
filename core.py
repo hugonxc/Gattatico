@@ -24,7 +24,7 @@ def init_game():
 
     # Add Cat to Space
     cat = Body(mass=1, moment=1)
-    cat_shape = Cat(cat, 5)
+    cat_shape = Cat(cat, 10)
     cat_shape.elasticity = 1
     cat.position = (50, 120)
     cat_shape.collision_type = 1
@@ -36,7 +36,7 @@ def init_game():
     pickle_shape.elasticity = 1
     pickle.position = (180, 120)
     pickle.velocity_func = zero_gravity
-    pickle.velocity = (-50, 0)
+    pickle.velocity = (0, 0)
     pickle_shape.collision_type = 2
 
     # Setup the collision callback function Cat and Pickle
@@ -51,7 +51,7 @@ def init_game():
     star_shape = Star(star, 5)
     star.position = (90, 120)
     star.velocity_func = zero_gravity
-    star.velocity = (-50, 0)
+    star.velocity = (0, 0)
     star_shape.collision_type = 3
 
     # Setup the collision callback function Cat and Star
@@ -74,7 +74,6 @@ def init_game():
 def draw_game(space):
     draw_stars()
     for body in space.bodies:
-        print(body.shapes)
         for shape in body.shapes:
             shape.draw()
 
