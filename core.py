@@ -19,6 +19,8 @@ def boost(space, arbiter, data):
                 body.velocity = (-600, 0)
                 shape.collision_type = 6
 
+
+
     return False
 
 def same_elem_collision(space, arbiter, data):
@@ -54,7 +56,7 @@ def generate_pickles(space):
         pickle.position = (x, y)
         pickle.velocity_func = zero_gravity
 
-        v = random.randrange(-20, -10)
+        v = random.randrange(-200, -70)
         pickle.velocity = (v, 0)
 
         # Set collison type for pickle
@@ -137,7 +139,7 @@ def update_pickles(pickle, p_shape):
         y = random.randrange(0, 180)
         pickle.position = (x, y)
 
-        v = random.randrange(-20, -10)
+        v = random.randrange(-200, -70)
         pickle.velocity = (v, 0)
 
         p_shape.collision_type = 2
