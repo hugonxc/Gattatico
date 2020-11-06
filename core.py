@@ -15,11 +15,9 @@ def dead(space, arbiter, data):
 def boost(space, arbiter, data):
     for body in arbiter.bodies:
         for shape in body.shapes:
-            if isinstance(shape, Pickle):
+            if isinstance(shape, Pickle) or isinstance(shape, Star):
                 body.velocity = (-600, 0)
                 shape.collision_type = 6
-
-
 
     return False
 
@@ -56,7 +54,7 @@ def generate_pickles(space):
         pickle.position = (x, y)
         pickle.velocity_func = zero_gravity
 
-        v = random.randrange(-200, -70)
+        v = random.randrange(-20, -10)
         pickle.velocity = (v, 0)
 
         # Set collison type for pickle
@@ -133,6 +131,31 @@ def init_game():
     return sp
 
 
+def update_pickles(pickle, p_shape):
+    if pickle.position[0] < -15:
+        x = random.randrange(260, 800)
+        y = random.randrange(0, 180)
+        pickle.position = (x, y)
+
+        v = random.randrange(-20, -10)
+        pickle.velocity = (v, 0)
+
+        p_shape.collision_type = 2
+
+
+def update_stars(star, shape):
+    if star.position[0] < -15:
+        x = random.randrange(400, 1600)
+        y = random.randrange(0, 180)
+        star.position = (x, y)
+
+        v = random.randrange(-90, -50)
+        star.velocity = (v, 0)
+
+        shape.collision_type = 3
+
+
+
 def draw_game(space):
     draw_stars()
     for body in space.bodies:
@@ -141,7 +164,7 @@ def draw_game(space):
                 update_pickles(body, shape)
 
             elif isinstance(shape, Star):
-                update_stars(body)
+                update_stars(body, shape)
 
             shape.draw()
 
@@ -161,24 +184,10 @@ def controls(space):
     #     space.bodies[0].apply_force_at_local_point((1000, 0), (0,0))
 
 
-def update_pickles(pickle, p_shape):
-    if pickle.position[0] < -15:
-        x = random.randrange(260, 800)
-        y = random.randrange(0, 180)
-        pickle.position = (x, y)
+def restart(space):
+    #  Apply force based on the arrow key
+    if pyxel.btn(pyxel.KEY_SPACE):
+        pyxel.game_over = False
+        space = init_game()        
 
-        v = random.randrange(-200, -70)
-        pickle.velocity = (v, 0)
-
-        p_shape.collision_type = 2
-
-
-def update_stars(star):
-    if star.position[0] < -15:
-        x = random.randrange(400, 1600)
-        y = random.randrange(0, 180)
-        star.position = (x, y)
-
-        v = random.randrange(-90, -50)
-        star.velocity = (v, 0)
-
+    return space

@@ -2,7 +2,7 @@ import pyxel
 import random
 
 from sky import load_stars
-from core import init_game, draw_game, controls
+from core import init_game, draw_game, controls, restart
 
 FPS = 60
 dt = 1 / FPS
@@ -14,15 +14,17 @@ def update():
 
 
 def draw():
+    global space
+
     if pyxel.game_over:
         pyxel.cls(pyxel.COLOR_RED)
-        pyxel.text(180,120, "YOU DIED", pyxel.COLOR_WHITE)
+        pyxel.text(110,80, "YOU DIED", pyxel.COLOR_WHITE)
+        pyxel.text(80, 100, "PRESS <SPACE> TO TRY AGAIN", pyxel.COLOR_WHITE)
+        space = restart(space)
 
     else:
         pyxel.cls(pyxel.COLOR_BLACK)
         draw_game(space)
-
-
 
 # Init game steps
 load_stars()
