@@ -33,7 +33,7 @@ def zero_gravity(body, gravity, damping, dt):
 
 def generate_cat(space):
     cat = Body(mass=1, moment=1)
-    cat_shape = Cat(cat, 10)
+    cat_shape = Cat(cat, 15)
     cat_shape.elasticity = 1
     cat.position = (50, 120)
     cat_shape.collision_type = 1
@@ -48,7 +48,7 @@ def generate_cat(space):
 def generate_pickles(space):
     for i in range(0,10):
         pickle = Body(mass=1, moment=1)
-        pickle_shape = Pickle(pickle, 5)
+        pickle_shape = Pickle(pickle, 6)
         pickle_shape.elasticity = 1
 
         x = random.randrange(260, 800)
